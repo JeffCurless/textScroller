@@ -19,13 +19,13 @@ A companion host-side scheduler (`host/scheduler.py`) reads messages from a file
 
 ```
 textScroller/
-└── Pico
-    ├── main.py         — Entry point: boot sequence, WiFi, starts display + server tasks
-    ├── config.py       — All tunable constants (WiFi credentials, display settings)
-    ├── state.py        — Shared AppState singleton used by display and server
-    ├── wifi.py         — Blocking WiFi connect; returns IP or raises RuntimeError
-    ├── display.py      — Async scroll animation loop and hardware button handling
-    ├── server.py       — Async HTTP server: request parsing and route dispatch
+├── Pico/
+│   ├── main.py         — Entry point: boot sequence, WiFi, starts display + server tasks
+│   ├── config.py       — All tunable constants (WiFi credentials, display settings)
+│   ├── state.py        — Shared AppState singleton used by display and server
+│   ├── wifi.py         — Blocking WiFi connect; returns IP or raises RuntimeError
+│   ├── display.py      — Async scroll animation loop and hardware button handling
+│   └── server.py       — Async HTTP server: request parsing and route dispatch
 └── host/
     ├── scheduler.py  — Host-side scheduler: sends messages at configured times
     ├── schedule.json — Schedule config: display IP, times, message line references
@@ -47,10 +47,10 @@ WIFI_PASSWORD = "your_password"
 
 ### 2. Deploy to the Pico W
 
-Copy all root-level `.py` files to the device. Using `mpremote`:
+Copy all `.py` files from the `Pico/` directory to the device. Using `mpremote` (run from the repo root):
 
 ```bash
-mpremote cp main.py config.py state.py wifi.py display.py server.py :
+mpremote cp Pico/main.py Pico/config.py Pico/state.py Pico/wifi.py Pico/display.py Pico/server.py :
 ```
 
 Or use Thonny — open each file and use **File → Save as… → Raspberry Pi Pico**.
@@ -272,12 +272,13 @@ All defaults live in `config.py`:
 
 | Constant | Default | Description |
 |----------|---------|-------------|
-| `WIFI_SSID` | `""` | WiFi network name |
-| `WIFI_PASSWORD` | `""` | WiFi password |
+| `WIFI_SSID` | `"SSID"` | WiFi network name |
+| `WIFI_PASSWORD` | `"PASSWORD"` | WiFi password |
 | `WIFI_TIMEOUT` | `20` | Seconds before connect gives up |
 | `DEFAULT_SCROLL_SPEED` | `50` | Milliseconds per pixel (lower = faster) |
 | `DEFAULT_BRIGHTNESS` | `0.5` | Initial brightness (0.0–1.0) |
 | `DEFAULT_COLOR` | `(255,255,255)` | Default text color (white) |
+| `TEXT_SCALE` | `1` | Font scale factor passed to `PicoGraphics.text()` |
 | `TEXT_Y_OFFSET` | `0` | Vertical pixel offset for text (0 = top row) |
 | `SCROLL_PADDING` | `10` | Blank pixels appended after each message |
 | `HTTP_PORT` | `80` | HTTP server port |
