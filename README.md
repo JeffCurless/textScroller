@@ -19,12 +19,13 @@ A companion host-side scheduler (`host/scheduler.py`) reads messages from a file
 
 ```
 textScroller/
-├── main.py         — Entry point: boot sequence, WiFi, starts display + server tasks
-├── config.py       — All tunable constants (WiFi credentials, display settings)
-├── state.py        — Shared AppState singleton used by display and server
-├── wifi.py         — Blocking WiFi connect; returns IP or raises RuntimeError
-├── display.py      — Async scroll animation loop and hardware button handling
-├── server.py       — Async HTTP server: request parsing and route dispatch
+└── Pico
+    ├── main.py         — Entry point: boot sequence, WiFi, starts display + server tasks
+    ├── config.py       — All tunable constants (WiFi credentials, display settings)
+    ├── state.py        — Shared AppState singleton used by display and server
+    ├── wifi.py         — Blocking WiFi connect; returns IP or raises RuntimeError
+    ├── display.py      — Async scroll animation loop and hardware button handling
+    ├── server.py       — Async HTTP server: request parsing and route dispatch
 └── host/
     ├── scheduler.py  — Host-side scheduler: sends messages at configured times
     ├── schedule.json — Schedule config: display IP, times, message line references
