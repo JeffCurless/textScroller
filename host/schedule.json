@@ -1,0 +1,12 @@
+{
+  "display_ip": "192.168.1.82",
+  "display_port": 80,
+  "messages_file": "messages.txt",
+  "schedule": [
+    { "time": "21:40", "line": 1 },
+    { "time": "21:42", "line": 2, "color": [255, 200, 0] },
+    { "time": "21:44", "line": 3, "color": [0, 200, 255] },
+    { "time": "21:46", "line": 4 },
+    { "time": "21:48", "line": 5, "color": [255, 80, 80] }
+  ]
+}
